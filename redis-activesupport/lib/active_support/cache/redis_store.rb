@@ -45,6 +45,7 @@ module ActiveSupport
         instrument(:delete_matched, matcher.inspect) do
           matcher = key_matcher(matcher, options)
           begin
+            puts "KEYS FOUND: " + @data.keys(matcher)
             !(keys = @data.keys(matcher)).empty? && @data.del(*keys)
           rescue Errno::ECONNREFUSED => e
             false
